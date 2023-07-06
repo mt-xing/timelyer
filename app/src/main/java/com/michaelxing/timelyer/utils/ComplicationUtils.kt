@@ -1,18 +1,3 @@
-/*
- * Copyright 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.michaelxing.timelyer.utils
 
 import android.content.Context
@@ -39,9 +24,6 @@ private const val LEFT_AND_RIGHT_COMPLICATIONS_BOTTOM_BOUND = 0.51f
 private const val LEFT_COMPLICATION_LEFT_BOUND = 0.08f
 private const val LEFT_COMPLICATION_RIGHT_BOUND = 0.28f
 
-private const val RIGHT_COMPLICATION_LEFT_BOUND = 0.6f
-private const val RIGHT_COMPLICATION_RIGHT_BOUND = 0.8f
-
 private val DEFAULT_COMPLICATION_STYLE_DRAWABLE_ID = R.drawable.complication_red_style
 
 // Unique IDs for each complication. The settings activity that supports allowing users
@@ -55,16 +37,6 @@ internal const val RIGHT_COMPLICATION_ID = 101
 sealed class ComplicationConfig(val id: Int, val supportedTypes: List<ComplicationType>) {
     object Left : ComplicationConfig(
         LEFT_COMPLICATION_ID,
-        listOf(
-            ComplicationType.RANGED_VALUE,
-            ComplicationType.MONOCHROMATIC_IMAGE,
-            ComplicationType.SHORT_TEXT,
-            ComplicationType.SMALL_IMAGE
-        )
-    )
-
-    object Right : ComplicationConfig(
-        RIGHT_COMPLICATION_ID,
         listOf(
             ComplicationType.RANGED_VALUE,
             ComplicationType.MONOCHROMATIC_IMAGE,
@@ -108,25 +80,8 @@ fun createComplicationSlotManager(
     )
         .build()
 
-    val rightComplication = ComplicationSlot.createRoundRectComplicationSlotBuilder(
-        id = ComplicationConfig.Right.id,
-        canvasComplicationFactory = defaultCanvasComplicationFactory,
-        supportedTypes = ComplicationConfig.Right.supportedTypes,
-        defaultDataSourcePolicy = DefaultComplicationDataSourcePolicy(
-            SystemDataSources.DATA_SOURCE_STEP_COUNT,
-            ComplicationType.SHORT_TEXT
-        ),
-        bounds = ComplicationSlotBounds(
-            RectF(
-                RIGHT_COMPLICATION_LEFT_BOUND,
-                LEFT_AND_RIGHT_COMPLICATIONS_TOP_BOUND,
-                RIGHT_COMPLICATION_RIGHT_BOUND,
-                LEFT_AND_RIGHT_COMPLICATIONS_BOTTOM_BOUND
-            )
-        )
-    ).build()
     return ComplicationSlotsManager(
-        listOf(leftComplication),//, rightComplication),
+        listOf(leftComplication),
         currentUserStyleRepository
     )
 }
