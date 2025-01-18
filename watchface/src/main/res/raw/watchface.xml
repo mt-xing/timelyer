@@ -3,33 +3,292 @@
   <Metadata key="CLOCK_TYPE" value="DIGITAL"/>
   <Metadata key="PREVIEW_TIME" value="10:08:32"/>
   <Scene backgroundColor="#ff000000">
-    <DigitalClock x="0" y="0" width="450" height="450">
-      <!-- For further attributes see:
-          https://developer.android.com/training/wearables/wff/clock/time-text -->
-      <!-- SYNC_TO_DEVICE specifies to respect the device 12/24h setting -->
-      <!-- Interactive mode version-->
-      <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="175" width="450" height="100" alpha="255">
+    <DigitalClock x="100" y="0" width="350" height="450">
+      <TimeText format="hh:mm" hourFormat="24" align="CENTER" x="0" y="100" width="350" height="100" alpha="255">
         <Variant mode="AMBIENT" target="alpha" value="0"/>
         <!-- Specifying the watch's default font-family by using SYNC_TO_DEVICE instead of a named family -->
-        <Font family="SYNC_TO_DEVICE" size="128" weight="NORMAL" slant="NORMAL" color="#ffffffff"/>
+        <Font family="SYNC_TO_DEVICE" size="96" weight="NORMAL" slant="NORMAL" color="#ffffffff"/>
       </TimeText>
       <!-- Ambient mode version - thinner weight -->
-      <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="175" width="450" height="100" alpha="0">
+      <TimeText format="hh:mm" hourFormat="24" align="CENTER" x="0" y="100" width="350" height="100" alpha="0">
         <!-- Specifying the watch's default family by using SYNC_TO_DEVICE -->
         <Variant mode="AMBIENT" target="alpha" value="255"/>
-        <Font family="SYNC_TO_DEVICE" size="128" weight="THIN" slant="NORMAL" color="#ffffffff"/>
+        <Font family="SYNC_TO_DEVICE" size="96" weight="THIN" slant="NORMAL" color="#ffffffff"/>
       </TimeText>
     </DigitalClock>
-    <Group x="0" y="0" width="450" height="450" name="hello_world">
-      <PartText x="0" y="285" width="450" height="50">
-        <Variant mode="AMBIENT" target="alpha" value="0"/>
+    <Group x="0" y="250" width="450" height="150" name="calendar">
+      <PartText x="57" y="0" width="48" height="36">
         <Text align="CENTER">
-          <!-- Demonstrates using Android string resources for localization -->
-          <Font family="SYNC_TO_DEVICE" size="36" color="#ffffffff">
-            <Template>%s<Parameter expression="greeting"></Parameter></Template>
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="M" />
+            </Template>
           </Font>
         </Text>
       </PartText>
+      <PartText x="105" y="0" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="T" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="153" y="0" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="W" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="201" y="0" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="T" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="249" y="0" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="F" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="297" y="0" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="S" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="345" y="0" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="S" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartDraw x="0" y="35" width="450" height="2">
+        <Line startX="0" startY="1" endX="450" endY="1">
+          <Stroke color="#ffffffff" thickness="2" />
+        </Line>
+      </PartDraw>
+      <PartText x="57" y="36" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 0 - 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="105" y="36" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 1 - 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="153" y="36" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 2 - 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="201" y="36" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 3 - 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="249" y="36" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 4 - 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="297" y="36" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 5 - 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="345" y="36" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 6 - 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartDraw x="0" y="71" width="450" height="2">
+        <Line startX="0" startY="1" endX="450" endY="1">
+          <Stroke color="#ffffffff" thickness="2" />
+        </Line>
+      </PartDraw>
+      <PartText x="57" y="72" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 0) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="105" y="72" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 1) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="153" y="72" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 2) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="201" y="72" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 3) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="249" y="72" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 4) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="297" y="72" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 5) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="345" y="72" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 6) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartDraw x="0" y="107" width="450" height="2">
+        <Line startX="0" startY="1" endX="450" endY="1">
+          <Stroke color="#ffffffff" thickness="2" />
+        </Line>
+      </PartDraw>
+      <PartText x="57" y="108" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 0 + 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="105" y="108" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 1 + 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="153" y="108" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 2 + 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="201" y="108" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 3 + 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="249" y="108" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 4 + 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="297" y="108" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 5 + 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartText x="345" y="108" width="48" height="36">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;d&quot;, [UTC_TIMESTAMP] + ((-(([DAY_OF_WEEK] + 5) % 7) + 6 + 7) * 86400000))" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+      <PartDraw x="0" y="143" width="450" height="2">
+        <Line startX="0" startY="1" endX="450" endY="1">
+          <Stroke color="#ffffffff" thickness="2" />
+        </Line>
+      </PartDraw>
     </Group>
   </Scene>
 </WatchFace>
