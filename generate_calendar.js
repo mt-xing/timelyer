@@ -14,6 +14,40 @@ function generateWeekOffsetString(weekOffset) {
 }
 
 function generateDateWrap(weekday, weekOffset, inner, blueColor, invertColor) {
+    if (blueColor) {
+        console.log(
+`      <Condition>
+        <Expressions>
+          <Expression name="is-day-${weekday}">
+            (([DAY_OF_WEEK] + 5) % 7) == ${weekday}
+          </Expression>
+        </Expressions>
+        <Compare expression="is-day-${weekday}">
+          <PartText x="${startX + width * weekday}" y="${height * (weekOffset + midY)}" width="${width}" height="${height}">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#00ffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="${inner}" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Compare>
+        <Default>
+          <PartText x="${startX + width * weekday}" y="${height * (weekOffset + midY)}" width="${width}" height="${height}">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="${inner}" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Default>
+      </Condition>`
+        );
+        return;
+    }
     if (invertColor) {
         console.log(
 `      <Condition>
@@ -84,13 +118,13 @@ console.log(
       </PartDraw>`
 );
 
-generateDateWrap(0, -2, "M");
-generateDateWrap(1, -2, "T");
-generateDateWrap(2, -2, "W");
-generateDateWrap(3, -2, "T");
-generateDateWrap(4, -2, "F");
-generateDateWrap(5, -2, "S");
-generateDateWrap(6, -2, "S");
+generateDateWrap(0, -2, "M", true);
+generateDateWrap(1, -2, "T", true);
+generateDateWrap(2, -2, "W", true);
+generateDateWrap(3, -2, "T", true);
+generateDateWrap(4, -2, "F", true);
+generateDateWrap(5, -2, "S", true);
+generateDateWrap(6, -2, "S", true);
 
 generateLine(height);
 

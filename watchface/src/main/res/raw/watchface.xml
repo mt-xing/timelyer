@@ -177,69 +177,209 @@
           <Fill color="#00ffff" />
         </Rectangle>
       </PartDraw>
-      <PartText x="57" y="0" width="48" height="36">
-        <Text align="CENTER">
-          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
-            <Template>%s
-              <Parameter expression="M" />
-            </Template>
-          </Font>
-        </Text>
-      </PartText>
-      <PartText x="105" y="0" width="48" height="36">
-        <Text align="CENTER">
-          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
-            <Template>%s
-              <Parameter expression="T" />
-            </Template>
-          </Font>
-        </Text>
-      </PartText>
-      <PartText x="153" y="0" width="48" height="36">
-        <Text align="CENTER">
-          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
-            <Template>%s
-              <Parameter expression="W" />
-            </Template>
-          </Font>
-        </Text>
-      </PartText>
-      <PartText x="201" y="0" width="48" height="36">
-        <Text align="CENTER">
-          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
-            <Template>%s
-              <Parameter expression="T" />
-            </Template>
-          </Font>
-        </Text>
-      </PartText>
-      <PartText x="249" y="0" width="48" height="36">
-        <Text align="CENTER">
-          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
-            <Template>%s
-              <Parameter expression="F" />
-            </Template>
-          </Font>
-        </Text>
-      </PartText>
-      <PartText x="297" y="0" width="48" height="36">
-        <Text align="CENTER">
-          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
-            <Template>%s
-              <Parameter expression="S" />
-            </Template>
-          </Font>
-        </Text>
-      </PartText>
-      <PartText x="345" y="0" width="48" height="36">
-        <Text align="CENTER">
-          <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff">
-            <Template>%s
-              <Parameter expression="S" />
-            </Template>
-          </Font>
-        </Text>
-      </PartText>
+      <Condition>
+        <Expressions>
+          <Expression name="is-day-0">
+            (([DAY_OF_WEEK] + 5) % 7) == 0
+          </Expression>
+        </Expressions>
+        <Compare expression="is-day-0">
+          <PartText x="57" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#00ffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="M" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Compare>
+        <Default>
+          <PartText x="57" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="M" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Default>
+      </Condition>
+      <Condition>
+        <Expressions>
+          <Expression name="is-day-1">
+            (([DAY_OF_WEEK] + 5) % 7) == 1
+          </Expression>
+        </Expressions>
+        <Compare expression="is-day-1">
+          <PartText x="105" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#00ffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="T" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Compare>
+        <Default>
+          <PartText x="105" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="T" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Default>
+      </Condition>
+      <Condition>
+        <Expressions>
+          <Expression name="is-day-2">
+            (([DAY_OF_WEEK] + 5) % 7) == 2
+          </Expression>
+        </Expressions>
+        <Compare expression="is-day-2">
+          <PartText x="153" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#00ffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="W" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Compare>
+        <Default>
+          <PartText x="153" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="W" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Default>
+      </Condition>
+      <Condition>
+        <Expressions>
+          <Expression name="is-day-3">
+            (([DAY_OF_WEEK] + 5) % 7) == 3
+          </Expression>
+        </Expressions>
+        <Compare expression="is-day-3">
+          <PartText x="201" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#00ffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="T" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Compare>
+        <Default>
+          <PartText x="201" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="T" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Default>
+      </Condition>
+      <Condition>
+        <Expressions>
+          <Expression name="is-day-4">
+            (([DAY_OF_WEEK] + 5) % 7) == 4
+          </Expression>
+        </Expressions>
+        <Compare expression="is-day-4">
+          <PartText x="249" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#00ffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="F" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Compare>
+        <Default>
+          <PartText x="249" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="F" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Default>
+      </Condition>
+      <Condition>
+        <Expressions>
+          <Expression name="is-day-5">
+            (([DAY_OF_WEEK] + 5) % 7) == 5
+          </Expression>
+        </Expressions>
+        <Compare expression="is-day-5">
+          <PartText x="297" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#00ffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="S" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Compare>
+        <Default>
+          <PartText x="297" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="S" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Default>
+      </Condition>
+      <Condition>
+        <Expressions>
+          <Expression name="is-day-6">
+            (([DAY_OF_WEEK] + 5) % 7) == 6
+          </Expression>
+        </Expressions>
+        <Compare expression="is-day-6">
+          <PartText x="345" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#00ffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="S" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Compare>
+        <Default>
+          <PartText x="345" y="0" width="48" height="36">
+            <Text align="CENTER">
+              <Font family="SYNC_TO_DEVICE" size="24" color="#ffffffff" weight="BOLD" >
+                <Template>%s
+                  <Parameter expression="S" />
+                </Template>
+              </Font>
+            </Text>
+          </PartText>
+        </Default>
+      </Condition>
       <PartDraw x="0" y="35" width="450" height="2">
         <Line startX="0" startY="1" endX="450" endY="1">
           <Stroke color="#ffffffff" thickness="2" />
