@@ -1,12 +1,9 @@
 [versions]
-agp = "8.8.0"
-kotlin = "1.9.24"
-playServicesWearable = "18.0.0"
-
-[libraries]
-play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
+androidGradlePlugin = "8.8.0"
+kotlin = "1.9.25"
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
 
