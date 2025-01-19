@@ -17,6 +17,18 @@
       </TimeText>
     </DigitalClock>
 
+    <Group x="0" y="45" width="450" height="64" name="date">
+      <PartText x="0" y="0" width="450" height="64">
+        <Text align="CENTER">
+          <Font family="SYNC_TO_DEVICE" size="36" color="#ffffffff">
+            <Template>%s
+              <Parameter expression="icuText(&quot;MMM d, y&quot;)" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+    </Group>
+
     <Group x="150" y="200" width="150" height="32" name="step">
       <PartText x="0" y="0" width="150" height="32">
         <Text align="START">
