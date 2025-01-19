@@ -29,8 +29,8 @@
       </PartText>
     </Group>
 
-    <Group x="0" y="20" width="225" height="25" name="battery-text">
-      <PartText x="0" y="0" width="225" height="25">
+    <Group x="0" y="20" width="220" height="25" name="battery-text">
+      <PartText x="0" y="0" width="220" height="25">
         <Text align="END">
           <Font family="SYNC_TO_DEVICE" size="14" color="#ffffffff">
             <Template>%s%s%s
@@ -42,6 +42,48 @@
         </Text>
       </PartText>
     </Group>
+
+    <Condition>
+      <Expressions>
+        <Expression name="is-low-battery">
+          [BATTERY_PERCENT] &lt;= 20
+        </Expression>
+      </Expressions>
+      <Compare expression="is-low-battery">
+        <Group x="230" y="20" width="225" height="25" name="battery-icon">
+          <PartDraw x="0" y="0" width="225" height="25">
+            <Rectangle x="0" y="3" width="50" height="19">
+              <Fill color="#ff0000" />
+            </Rectangle>
+            <Rectangle x="50" y="8" width="5" height="9">
+              <Fill color="#ff0000" />
+            </Rectangle>
+            <Rectangle x="2" y="5" width="46" height="15">
+              <Transform target="x" value="2 + 46 * ([BATTERY_PERCENT] / 100.0)" />
+              <Transform target="width" value="46 * ((100 - [BATTERY_PERCENT]) / 100.0)" />
+              <Fill color="#000000" />
+            </Rectangle>
+          </PartDraw>
+        </Group>
+      </Compare>
+      <Default>
+        <Group x="230" y="20" width="225" height="25" name="battery-icon">
+          <PartDraw x="0" y="0" width="225" height="25">
+            <Rectangle x="0" y="3" width="50" height="19">
+              <Fill color="#ffffffff" />
+            </Rectangle>
+            <Rectangle x="50" y="8" width="5" height="9">
+              <Fill color="#ffffffff" />
+            </Rectangle>
+            <Rectangle x="2" y="5" width="46" height="15">
+              <Transform target="x" value="2 + 46 * ([BATTERY_PERCENT] / 100.0)" />
+              <Transform target="width" value="46 * ((100 - [BATTERY_PERCENT]) / 100.0)" />
+              <Fill color="#000000" />
+            </Rectangle>
+          </PartDraw>
+        </Group>
+      </Default>
+    </Condition>
 
     <Group x="150" y="200" width="150" height="32" name="step">
       <PartText x="0" y="0" width="150" height="32">
