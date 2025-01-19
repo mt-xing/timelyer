@@ -29,6 +29,20 @@
       </PartText>
     </Group>
 
+    <Group x="0" y="20" width="225" height="25" name="battery-text">
+      <PartText x="0" y="0" width="225" height="25">
+        <Text align="END">
+          <Font family="SYNC_TO_DEVICE" size="14" color="#ffffffff">
+            <Template>%s%s%s
+              <Parameter expression="[BATTERY_CHARGING_STATUS] ? &quot;⚡ &quot; : &quot;&quot;" />
+              <Parameter expression="[BATTERY_PERCENT]" />
+              <Parameter expression="percent" />
+            </Template>
+          </Font>
+        </Text>
+      </PartText>
+    </Group>
+
     <Group x="150" y="200" width="150" height="32" name="step">
       <PartText x="0" y="0" width="150" height="32">
         <Text align="START">
