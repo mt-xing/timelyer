@@ -131,16 +131,17 @@
         width="112" height="112"
         slotId="0"
         name="left_complication" displayName="Left"
-        supportedTypes="SMALL_IMAGE">
+        supportedTypes="SHORT_TEXT">
       <DefaultProviderPolicy
-          primaryProvider="com.google.android.wearable.weather/com.google.android.wearable.weather.complications.WeatherProviderService"
-          primaryProviderType="SMALL_IMAGE"
-          defaultSystemProvider="APP_SHORTCUT"
-          defaultSystemProviderType="SMALL_IMAGE"
+          primaryProvider="com.google.android.gm/com.google.android.apps.gmail.wear.complications.UnreadEmailsComplicationService"
+          primaryProviderType="SHORT_TEXT"
+          defaultSystemProvider="SUNRISE_SUNSET"
+          defaultSystemProviderType="SHORT_TEXT"
           />
       <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
-      <Complication type="SMALL_IMAGE">
-        <Group name="smallImage_oval" x="0" y="0" width="112" height="112">
+
+      <Complication type="SHORT_TEXT">
+        <Group name="shortText_oval" x="0" y="0" width="112" height="112">
           <PartDraw x="0" y="0" height="112" width="112" alpha="0">
             <Variant mode="AMBIENT" target="alpha" value="255" />
             <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="56" centerY="56" width="100" height="100">
@@ -155,84 +156,143 @@
           </PartDraw>
         </Group>
         <Condition>
-          <!-- IMAGE_STYLE values: 1 = PHOTO, 2 = ICON -->
           <Expressions>
-            <Expression name="smallImage_icon">
-              <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 2]]>
+            <Expression name="shortText_monochromaticImage">
+              <![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null]]>
             </Expression>
-            <Expression name="smallImage_photo">
-              <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 1]]>
+            <Expression name="shortText_title">
+              <![CDATA[[COMPLICATION.TITLE] != null]]>
             </Expression>
           </Expressions>
-          <!--
-            When the SMALL_IMAGE has type of ICON, then the resource can be
-            tinted. In this example, the a darker tint is applied when in
-            ambient mode.
-          -->
-          <Compare expression="smallImage_icon">
-            <Group name="smallImage_icon_ambient" x="0" y="0" width="112" height="112" alpha="0">
-              <Variant mode="AMBIENT" target="alpha" value="255" />
-              <Condition>
-                <Expressions>
-                  <Expression name="ambientImage">
-                    <![CDATA[[COMPLICATION.SMALL_IMAGE_AMBIENT] != null]]>
-                  </Expression>
-                </Expressions>
-                <Compare expression="ambientImage">
-                  <PartImage x="24" y="24" width="64" height="64" tintColor="[CONFIGURATION.themeColor.1]">
-                    <Image resource="[COMPLICATION.SMALL_IMAGE_AMBIENT]" />
-                  </PartImage>
-                </Compare>
-                <Default>
-                  <PartImage x="24" y="24" width="64" height="64" tintColor="[CONFIGURATION.themeColor.1]">
-                    <Image resource="[COMPLICATION.SMALL_IMAGE]" />
-                  </PartImage>
-                </Default>
-              </Condition>
-            </Group>
-            <PartImage x="24" y="24" width="64" height="64" tintColor="[CONFIGURATION.themeColor.2]" alpha="255">
-              <Variant mode="AMBIENT" target="alpha" value="0" />
-              <Image resource="[COMPLICATION.SMALL_IMAGE]" />
-            </PartImage>
+          <Compare expression="shortText_monochromaticImage">
+            <Condition>
+              <Expressions>
+                <Expression name="monochromatic_ambientImage">
+                  <![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && [COMPLICATION.MONOCHROMATIC_IMAGE_AMBIENT] != null]]>
+                </Expression>
+                <Expression name="monochromatic_noAmbientImage">
+                  <![CDATA[[COMPLICATION.MONOCHROMATIC_IMAGE] != null && [COMPLICATION.MONOCHROMATIC_IMAGE_AMBIENT] == null]]>
+                </Expression>
+              </Expressions>
+              <Compare expression="monochromatic_ambientImage">
+                <PartImage x="40" y="15" width="32" height="32" tintColor="[CONFIGURATION.themeColor.1]" alpha="0">
+                  <Variant mode="AMBIENT" target="alpha" value="255" />
+                  <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE_AMBIENT]" />
+                </PartImage>
+                <PartImage x="40" y="15" width="32" height="32" tintColor="[CONFIGURATION.themeColor.2]" alpha="255">
+                  <Variant mode="AMBIENT" target="alpha" value="0" />
+                  <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                </PartImage>
+                <PartText x="0" y="56" width="112" height="20" alpha="0">
+                  <Variant mode="AMBIENT" target="alpha" value="255" />
+                  <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="SYNC_TO_DEVICE" size="28" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.1]">
+                      <Template>%s<Parameter expression="[COMPLICATION.TEXT]"/>
+                      </Template>
+                    </Font>
+                  </Text>
+                </PartText>
+                <PartText x="0" y="56" width="112" height="20" alpha="255">
+                  <Variant mode="AMBIENT" target="alpha" value="0" />
+                  <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="SYNC_TO_DEVICE" size="28" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.2]">
+                      <Template>%s<Parameter expression="[COMPLICATION.TEXT]"/>
+                      </Template>
+                    </Font>
+                  </Text>
+                </PartText>
+              </Compare>
+              <Compare expression="monochromatic_noAmbientImage">
+                <PartImage x="40" y="15" width="32" height="32" tintColor="[CONFIGURATION.themeColor.1]" alpha="0">
+                  <Variant mode="AMBIENT" target="alpha" value="255" />
+                  <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                </PartImage>
+                <PartImage x="40" y="15" width="32" height="32" tintColor="[CONFIGURATION.themeColor.2]" alpha="255">
+                  <Variant mode="AMBIENT" target="alpha" value="0" />
+                  <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+                </PartImage>
+                <PartText x="0" y="56" width="112" height="20" alpha="0">
+                  <Variant mode="AMBIENT" target="alpha" value="255" />
+                  <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="SYNC_TO_DEVICE" size="28" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.1]">
+                      <Template>%s<Parameter expression="[COMPLICATION.TEXT]"/>
+                      </Template>
+                    </Font>
+                  </Text>
+                </PartText>
+                <PartText x="0" y="56" width="112" height="20" alpha="255">
+                  <Variant mode="AMBIENT" target="alpha" value="0" />
+                  <Text align="CENTER" ellipsis="TRUE">
+                    <Font family="SYNC_TO_DEVICE" size="28" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.2]">
+                      <Template>%s<Parameter expression="[COMPLICATION.TEXT]"/>
+                      </Template>
+                    </Font>
+                  </Text>
+                </PartText>
+              </Compare>
+            </Condition>
           </Compare>
-
-          <!--
-            SmallImage that are PHOTO type, instead of ICON type can't be tinted
-            so here as an example, a filter is applied to transform the image to
-            greyscale, when an alternative SMALL_IMAGE_AMBIENT isn't supplied.
-          -->
-          <Compare expression="smallImage_photo">
-            <Group name="smallImage_photo_ambient" x="0" y="0" width="112" height="112" alpha="0">
+          <Compare expression="shortText_title">
+            <Group name="shortText_title_ambient" x="0" y="0" width="200" height="200" alpha="0">
               <Variant mode="AMBIENT" target="alpha" value="255" />
-              <Condition>
-                <Expressions>
-                  <Expression name="ambientImage">
-                    <![CDATA[[COMPLICATION.SMALL_IMAGE_AMBIENT] != null]]>
-                  </Expression>
-                </Expressions>
-                <Compare expression="ambientImage">
-                  <PartImage x="24" y="24" width="64" height="64">
-                    <ImageFilters>
-                      <HsbFilter saturate="0" brightness="0.5"/>
-                    </ImageFilters>
-                    <Image resource="[COMPLICATION.SMALL_IMAGE_AMBIENT]" />
-                  </PartImage>
-                </Compare>
-                <Default>
-                  <PartImage x="24" y="24" width="64" height="64">
-                    <ImageFilters>
-                      <HsbFilter saturate="0" brightness="0.5"/>
-                    </ImageFilters>
-                    <Image resource="[COMPLICATION.SMALL_IMAGE]" />
-                  </PartImage>
-                </Default>
-              </Condition>
+              <PartText x="0" y="33" width="112" height="20">
+                <Text align="CENTER" ellipsis="TRUE">
+                  <Font family="SYNC_TO_DEVICE" size="20" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.1]">
+                    <Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+                    </Template>
+                  </Font>
+                </Text>
+              </PartText>
+              <PartText x="0" y="56" width="112" height="20">
+                <Text align="CENTER" ellipsis="TRUE">
+                  <Font family="SYNC_TO_DEVICE" size="28" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.1]">
+                    <Template>%s<Parameter expression="[COMPLICATION.TEXT]"/>
+                    </Template>
+                  </Font>
+                </Text>
+              </PartText>
             </Group>
-            <PartImage x="24" y="24" width="64" height="64" alpha="255">
+            <Group name="shortText_title" x="0" y="0" width="200" height="200" alpha="255">
               <Variant mode="AMBIENT" target="alpha" value="0" />
-              <Image resource="[COMPLICATION.SMALL_IMAGE]" />
-            </PartImage>
+              <PartText x="0" y="33" width="112" height="20">
+                <Text align="CENTER" ellipsis="TRUE">
+                  <Font family="SYNC_TO_DEVICE" size="20" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.2]">
+                    <Template>%s<Parameter expression="[COMPLICATION.TITLE]"/>
+                    </Template>
+                  </Font>
+                </Text>
+              </PartText>
+              <PartText x="0" y="56" width="112" height="20">
+                <Text align="CENTER" ellipsis="TRUE">
+                  <Font family="SYNC_TO_DEVICE" size="28" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.2]">
+                    <Template>%s<Parameter expression="[COMPLICATION.TEXT]"/>
+                    </Template>
+                  </Font>
+                </Text>
+              </PartText>
+            </Group>
           </Compare>
+          <!-- Text, on its own, with no Icon or Title -->
+          <Default>
+            <PartText x="0" y="0" width="112" height="112" alpha="255">
+              <Variant mode="AMBIENT" target="alpha" value="0" />
+              <Text align="CENTER" ellipsis="TRUE">
+                <Font family="SYNC_TO_DEVICE" size="28" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.2]">
+                  <Template>%s<Parameter expression="[COMPLICATION.TEXT]"/>
+                  </Template>
+                </Font>
+              </Text>
+            </PartText>
+            <PartText x="0" y="0" width="112" height="112" alpha="0">
+              <Variant mode="AMBIENT" target="alpha" value="255" />
+              <Text align="CENTER" ellipsis="TRUE">
+                <Font family="SYNC_TO_DEVICE" size="28" weight="NORMAL" slant="NORMAL" color="[CONFIGURATION.themeColor.1]">
+                  <Template>%s<Parameter expression="[COMPLICATION.TEXT]"/>
+                  </Template>
+                </Font>
+              </Text>
+            </PartText>
+          </Default>
         </Condition>
       </Complication>
     </ComplicationSlot>
