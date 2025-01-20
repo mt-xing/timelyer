@@ -21,11 +21,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.simpledigital"
+    namespace = "com.michaelxing.timelyer"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.simpledigital"
+        applicationId = "com.michaelxing.timelyer"
         minSdk = 33
         targetSdk = 33
         versionCode = 1
