@@ -2,6 +2,14 @@
 <WatchFace width="450" height="450">
   <Metadata key="CLOCK_TYPE" value="DIGITAL"/>
   <Metadata key="PREVIEW_TIME" value="10:08:32"/>
+
+  <UserConfigurations>
+    <ColorConfiguration id="themeColor" defaultValue="0" displayName="colors_label" screenReaderText="colors_label">
+      <ColorOption displayName="theme_one_label" id="0" colors="#16697a #d6d5d4 #ffa62b #333333 #000000"/>
+      <ColorOption displayName="theme_two_label" id="1" colors="#16697a #d6d5d4 #33cd2b #333333 #000000"/>
+    </ColorConfiguration>
+  </UserConfigurations>
+
   <Scene backgroundColor="#ff000000">
     <DigitalClock x="120" y="0" width="300" height="450">
       <TimeText format="hh:mm" hourFormat="24" align="CENTER" x="0" y="100" width="300" height="100" alpha="255">
@@ -119,9 +127,9 @@
     </DigitalClock>
 
     <ComplicationSlot
-        x="40" y="120"
-        width="96" height="96"
-        slotId="1"
+        x="30" y="110"
+        width="112" height="112"
+        slotId="0"
         name="left_complication" displayName="Left"
         supportedTypes="PHOTO_IMAGE SMALL_IMAGE">
       <DefaultProviderPolicy
@@ -130,27 +138,27 @@
           defaultSystemProvider="APP_SHORTCUT"
           defaultSystemProviderType="SMALL_IMAGE"
           />
-      <BoundingOval x="0" y="0" width="96" height="96" outlinePadding="2" />
+      <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
       <Complication type="PHOTO_IMAGE">
-        <PartImage x="0" y="0" height="96" width="96">
+        <PartImage x="0" y="0" height="112" width="112">
           <Image resource="[COMPLICATION.PHOTO_IMAGE]" />
         </PartImage>
-        <PartImage x="0" y="0" height="96" width="96" renderMode="MASK">
+        <PartImage x="0" y="0" height="112" width="112" renderMode="MASK">
           <Image resource="source" />
         </PartImage>
       </Complication>
 
       <Complication type="SMALL_IMAGE">
-        <Group name="smallImage_oval" x="0" y="0" width="96" height="96">
-          <PartDraw x="0" y="0" height="96" width="96" alpha="0">
+        <Group name="smallImage_oval" x="0" y="0" width="112" height="112">
+          <PartDraw x="0" y="0" height="112" width="112" alpha="0">
             <Variant mode="AMBIENT" target="alpha" value="255" />
-            <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="48" centerY="48" width="100" height="100">
+            <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="56" centerY="56" width="100" height="100">
               <Stroke color="[CONFIGURATION.themeColor.1]" cap="ROUND" thickness="2" />
             </Arc>
           </PartDraw>
-          <PartDraw x="0" y="0" height="96" width="96" alpha="255">
+          <PartDraw x="0" y="0" height="112" width="112" alpha="255">
             <Variant mode="AMBIENT" target="alpha" value="0" />
-            <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="48" centerY="48" width="100" height="100">
+            <Arc direction="CLOCKWISE" startAngle="0" endAngle="360" centerX="56" centerY="56" width="100" height="100">
               <Stroke color="[CONFIGURATION.themeColor.2]" cap="ROUND" thickness="2" />
             </Arc>
           </PartDraw>
@@ -171,7 +179,7 @@
             ambient mode.
           -->
           <Compare expression="smallImage_icon">
-            <Group name="smallImage_icon_ambient" x="0" y="0" width="96" height="96" alpha="0">
+            <Group name="smallImage_icon_ambient" x="0" y="0" width="112" height="112" alpha="0">
               <Variant mode="AMBIENT" target="alpha" value="255" />
               <Condition>
                 <Expressions>
@@ -203,7 +211,7 @@
             greyscale, when an alternative SMALL_IMAGE_AMBIENT isn't supplied.
           -->
           <Compare expression="smallImage_photo">
-            <Group name="smallImage_photo_ambient" x="0" y="0" width="96" height="96" alpha="0">
+            <Group name="smallImage_photo_ambient" x="0" y="0" width="112" height="112" alpha="0">
               <Variant mode="AMBIENT" target="alpha" value="255" />
               <Condition>
                 <Expressions>
