@@ -5,7 +5,7 @@
 
   <UserConfigurations>
     <ColorConfiguration id="themeColor" defaultValue="0" displayName="colors_label" screenReaderText="colors_label">
-      <ColorOption displayName="theme_one_label" id="0" colors="#16697a #d6d5d4 #ffa62b #333333 #000000"/>
+      <ColorOption displayName="theme_one_label" id="0" colors="#ffffff #ffffff #ffffff #ffffff #000000"/>
       <ColorOption displayName="theme_two_label" id="1" colors="#16697a #d6d5d4 #33cd2b #333333 #000000"/>
     </ColorConfiguration>
   </UserConfigurations>
@@ -131,7 +131,7 @@
         width="112" height="112"
         slotId="0"
         name="left_complication" displayName="Left"
-        supportedTypes="PHOTO_IMAGE SMALL_IMAGE">
+        supportedTypes="SMALL_IMAGE">
       <DefaultProviderPolicy
           primaryProvider="com.google.android.wearable.weather/com.google.android.wearable.weather.complications.WeatherProviderService"
           primaryProviderType="SMALL_IMAGE"
@@ -139,15 +139,6 @@
           defaultSystemProviderType="SMALL_IMAGE"
           />
       <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
-      <Complication type="PHOTO_IMAGE">
-        <PartImage x="0" y="0" height="112" width="112">
-          <Image resource="[COMPLICATION.PHOTO_IMAGE]" />
-        </PartImage>
-        <PartImage x="0" y="0" height="112" width="112" renderMode="MASK">
-          <Image resource="source" />
-        </PartImage>
-      </Complication>
-
       <Complication type="SMALL_IMAGE">
         <Group name="smallImage_oval" x="0" y="0" width="112" height="112">
           <PartDraw x="0" y="0" height="112" width="112" alpha="0">
